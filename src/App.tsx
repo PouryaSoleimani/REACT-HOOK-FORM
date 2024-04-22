@@ -1,7 +1,7 @@
 // ^ APP.TSX
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { type Container, type ISourceOptions, MoveDirection, OutMode, } from "@tsparticles/engine";
+import { type Container, type ISourceOptions } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 
 const App = () => {
@@ -91,7 +91,8 @@ const App = () => {
 
   return (
     <>
-      <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} className="z-0" />
+      {/* <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} className="z-0" /> */}
+      
       <div className="max-w-md z-50 mx-auto relative overflow-hidden  mt-32 bg-gray-800 p-8 rounded-lg shadow-md before:w-24 before:h-24 before:absolute before:bg-purple-600 before:rounded-full before:-z-10 before:blur-2xl after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12">
         <h2 className="text-2xl font-bold text-white mb-6">LOGIN</h2>
 
@@ -105,9 +106,11 @@ const App = () => {
             <label className="block text-sm font-medium text-gray-300" htmlFor="email">Email Address</label >
             <input className="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-md text-white" name="email" id="email" type="email" />
           </div>
+
           <div className="flex justify-center">
             <button className="bg-gradient-to-r from-purple-600 via-purple-400 to-blue-500 text-white px-16 py-4 font-bold rounded-md hover:opacity-80" type="submit">SUBMIT</button>
           </div>
+
         </form>
       </div>
 

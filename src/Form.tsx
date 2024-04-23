@@ -29,12 +29,12 @@ const Form = () => {
     return (
         <>
             <div className='flex flex-col justify-center items-center h-screen bg-gray-200'>
-                <form id='formContainer' onSubmit={handleSubmit(formHandler)} className='p-6 w-[20rem] bg-zinc-800  my-4 border-8 border-black rounded-xl flex flex-col space-y-10'>
+                <form id='formContainer' onSubmit={handleSubmit(formHandler)} className='p-6 w-[20rem] bg-zinc-800  my-2 border-8 border-black rounded-xl flex flex-col space-y-6'>
                     <h1 className='font-extrabold text-3xl text-white'>REGISTER</h1>
                     <input type="email" {...register("email")} className='p-2 rounded-xl font-bold outline-none' />
-                    {errors.email && <p className='font-extrabold text-red-700'>{errors.email.message}</p>}
+                    {errors.email && <p className='font-extrabold text-red-700 my-0 bg-red-200 p-2 text-sm rounded-lg'>{errors.email.message.toLocaleUpperCase()}</p>}
                     <input type="password" {...register("password")} className='p-2 rounded-xl font-bold outline-none' />
-                    {errors.password && <p className='font-extrabold text-red-700'>{errors.password.message}</p>}
+                    {errors.password && <p className='font-extrabold text-red-700 my-0 bg-red-200 text-sm p-2 rounded-lg'>{errors.password.message.toLocaleUpperCase()}</p>}
                     <button type="submit" className='bg-emerald-700 p-4 text-xl rounded-xl font-bold text-white hover:bg-emerald-500 duration-500'>SUBMIT</button>
                 </form>
 
@@ -42,6 +42,7 @@ const Form = () => {
                     <h1>Email : {values.email} - Password: {values.password}</h1>
                 </div>
             </div>
+
             <Toaster position="top-right" reverseOrder={true} />
         </>
     )

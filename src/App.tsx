@@ -95,14 +95,11 @@ const App = () => {
     [],
   );
 
-  //^ USEFORM FORM REACT-HOOK-FORM
-  const { register, handleSubmit, control, formState: { errors }, } = useForm<Inputs>({
-    mode: "onChange",
-    defaultValues: { email: "", password: "" }
-  });
+  //? USEFORM FORM REACT-HOOK-FORM
+  const { register, handleSubmit, control, formState: { errors } } = useForm<Inputs>({ mode: "onChange", defaultValues: { email: "", password: "" } });
 
   //^ SUBMIT HANDLER
-  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => { console.log(data); setData(data) }
+  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => { console.log(data); setData(data); }
 
 
   // & RETURN =============================================================================================================================

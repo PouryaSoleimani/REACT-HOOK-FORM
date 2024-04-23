@@ -44,3 +44,4 @@ defaultValues : ["pourya" ,"soleimani" , "pouryasoleimani@gmail.com" , ...]
 <!-- ! USING << YUP >> IN REACT-HOOK-FORM -->
 // to use YUP in react-hook-form , first we need " @hookform/resolvers npm package " , 
 // then we must import * as yup from yup
+// then creating a schema using yup.object()

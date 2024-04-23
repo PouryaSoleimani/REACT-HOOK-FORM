@@ -6,10 +6,15 @@ import { loadSlim } from "@tsparticles/slim";
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import toast, { Toaster } from 'react-hot-toast';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup'
 
 const App = () => {
   type Inputs = { email: string, password: string }
-
+  const schema = yup.object({
+    email: yup.string().email().required(),
+    password: yup.string().required().min(5).max(20)
+  })
   const [init, setInit] = useState(false);
   const [data, setData] = useState<{ email: string; password: string }>({ email: '', password: '' })
   const notify = () => toast.success('Successfull ! ');
@@ -97,10 +102,12 @@ const App = () => {
   );
 
   //1-USEFORM FORM REACT-HOOK-FORM
-  const { register, handleSubmit, control, getValues, formState: { errors } } = useForm<Inputs>({ mode: "onChange", defaultValues: { email: "", password: "", } });
+  const { register, handleSubmit, control, getValues, formState: { errors } } = useForm({
+    mode: "onChange", defaultValues: { email: "", password: "", }, resolver: yupResolver(schema)
+  });
 
   //2-SUBMIT HANDLER
-  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => { console.log(data); setData(data); notify(); console.log('VALUES :', getValues()) }
+  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => { console.log(data); setData(data); notify(); console.log('VALUES :', getValues()); }
 
 
   //^ RETURN =============================================================================================================================

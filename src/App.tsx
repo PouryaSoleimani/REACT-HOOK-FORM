@@ -5,13 +5,14 @@ import { type Container, type ISourceOptions } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
+import toast, { Toaster } from 'react-hot-toast';
 
 const App = () => {
   type Inputs = { email: string, password: string }
 
   const [init, setInit] = useState(false);
   const [data, setData] = useState<{ email: string; password: string }>({ email: '', password: '' })
-
+  const notify = () => toast.success('Successfull ! ');
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
@@ -99,7 +100,7 @@ const App = () => {
   const { register, handleSubmit, control, formState: { errors } } = useForm<Inputs>({ mode: "onChange", defaultValues: { email: "", password: "" } });
 
   //2-SUBMIT HANDLER
-  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => { console.log(data); setData(data) }
+  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => { console.log(data); setData(data); notify() }
 
 
   //^ RETURN =============================================================================================================================
@@ -110,7 +111,7 @@ const App = () => {
         <h2 className="text-2xl font-bold text-white mb-6">LOGIN</h2>
         <form onSubmit={handleSubmit(onSubmit)} >
           <div className="mb-4">
-            <input className="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-md text-white" type="email" placeholder="E-MAIL" {...register("email", { required: true, pattern: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/ })} />
+            <input className="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-md text-white" type="email" placeholder="E-MAIL" {...register("email", { required: true, pattern: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/, minLength: 5, maxLength: 30 })} />
           </div>
           {errors.email && <p className="text-red-700 font-bold">Email is Invalid</p>}
           <div className="mb-4">
@@ -122,6 +123,7 @@ const App = () => {
           </div>
         </form>
         <DevTool control={control} />
+        <Toaster position="top-right" reverseOrder={true} />
       </div >
 
       <h1 className="bg-zinc-500 text-center p-4 mx-auto font-extrabold rounded-xl w-fit border-4 border-black text-slate-950 mt-4">EMAIL :{data.email} -- PASSWORD :{data.password}</h1>

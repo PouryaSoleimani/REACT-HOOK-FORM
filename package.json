@@ -10,13 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.3",
     "react-hot-toast": "^2.4.1",
-    "tsparticles": "^3.3.0"
+    "tsparticles": "^3.3.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",

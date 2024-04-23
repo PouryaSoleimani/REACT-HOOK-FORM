@@ -111,13 +111,13 @@ const App = () => {
         <h2 className="text-2xl font-bold text-white mb-6">LOGIN</h2>
         <form onSubmit={handleSubmit(onSubmit)} >
           <div className="mb-4">
-            <input className="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-md text-white" type="email" placeholder="E-MAIL" {...register("email", { required: true, pattern: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/, minLength: 5, maxLength: 30 })} />
+            <input className="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-md text-white" type="email" placeholder="E-MAIL" {...register("email", { required: "email is Required", pattern: { value: /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/, message: "Invalid Email" }, minLength: 5, maxLength: 30 })} />
           </div>
-          {errors.email && <p className="text-red-700 font-bold">Email is Invalid</p>}
+          {errors.email && <p className="text-red-700 font-extrabold tracking-tighter p-2 text-lg">{errors.email.message}</p>}
           <div className="mb-4">
-            <input className="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-md text-white" type="password" placeholder="PASSWORD" {...register('password', { required: true, minLength: 5, maxLength: 10 })} />
+            <input className="mt-1 p-2 w-full bg-gray-700 border border-gray-600 rounded-md text-white" type="password" placeholder="PASSWORD" {...register('password', { required: "Password is Required", minLength: { value: 5, message: "Password must be Longer" }, maxLength: { value: 20, message: 'Password Too Long' } })} />
           </div>
-          {errors.password && <p className="text-red-700 font-bold">Invalid Password</p>}
+          {errors.password && <p className="text-red-700 font-extrabold tracking-tighter p-2 text-lg">{errors.password.message}</p>}
           <div className="flex justify-center">
             <button className="bg-gradient-to-r from-purple-600 via-purple-400 to-blue-500 text-white px-16 py-4 font-bold rounded-md hover:opacity-80" type="submit">SUBMIT</button>
           </div>

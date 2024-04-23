@@ -8,7 +8,7 @@ import { DevTool } from '@hookform/devtools';
 
 const App = () => {
   const [init, setInit] = useState(false);
-  
+
   const { register, handleSubmit, control, formState: { errors }, } = useForm({
     mode: "onChange",
     defaultValues: {
@@ -121,8 +121,8 @@ const App = () => {
           </div>
 
         </form>
-      </div >
           <DevTool control={control} />
+      </div >
 
 
     </>); 

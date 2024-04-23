@@ -4,25 +4,29 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 const Form = () => {
-
+    //YUP
     const schema = yup.object({
         email: yup.string().required().email().max(30),
         password: yup.string().required().min(5).max(20)
     }).required()
 
+    //USEFORM HOOK
     const { register, handleSubmit, getValues, formState: { errors }, } = useForm({
         defaultValues: { email: '', password: '' },
         resolver: yupResolver(schema)
     });
 
+    //FORM HANDLER FUNCTION
     const formHandler = (data) => {
         console.log(data)
         notify()
         setTimeout(() => { location.reload() }, 1500);
     }
 
+    // GETVALUES HOOK
     const values = getValues()
 
+    // REACT-HOT-TOAST
     const notify = () => toast.success('Successfull !');
 
     //^ RETURN
